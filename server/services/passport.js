@@ -6,6 +6,13 @@ const mongoose = require("mongoose");
 // import users class
 const User = mongoose.model("users");
 
+passport.serializeUser((user, done) => {
+  // user.id = identifying piece of info that will
+  // identify user in the followup request
+  // user.id is a reference to mongo DB user ID (not google ID)
+  done(null, user.id);
+});
+
 passport.use(
   new GoogleStrategy(
     {

@@ -1,0 +1,3 @@
+1. after the user has successfully logged in with google oAuth, we don't use the google ID anymore,
+   we only concern with the ID stored in mongo DB
+   
