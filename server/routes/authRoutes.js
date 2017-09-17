@@ -1,8 +1,6 @@
-const express = require("express");
-const app = express();
 const passport = require("passport");
 
-module.exports = () => {
+module.exports = app => {
   // Whenever the user go to this route, they will be directed to google auth flow
   app.get(
     "/auth/google",
