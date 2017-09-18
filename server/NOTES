@@ -3,3 +3,7 @@
   
 2. everytime we access mongo db, it is always an asynchronous call, so we need to handle it (.then())
 3. cookieSession is used to give our app access to cookies
+4. to run 2 server at a time (client and server), create 2 scripts, then install concurrently
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
