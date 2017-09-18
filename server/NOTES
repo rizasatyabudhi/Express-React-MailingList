@@ -1,3 +1,5 @@
 1. after the user has successfully logged in with google oAuth, we don't use the google ID anymore,
    we only concern with the ID stored in mongo DB
-   
+  
+2. everytime we access mongo db, it is always an asynchronous call, so we need to handle it (.then())
+3. cookieSession is used to give our app access to cookies

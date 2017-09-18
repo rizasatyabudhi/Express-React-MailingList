@@ -7,10 +7,16 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 
 passport.serializeUser((user, done) => {
-  // user.id = identifying piece of info that will
-  // identify user in the followup request
+  // user.id = identifying piece of info that will identify user in the followup request
   // user.id is a reference to mongo DB user ID (not google ID)
   done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  // 1st param = the token that we stuffed into the cookie (id)
+  User.findById(id).then(user => {
+    done(null, user);
+  });
 });
 
 passport.use(
