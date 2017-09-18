@@ -25,7 +25,8 @@ passport.use(
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       //  URL that the user will be sent to after they grant permission
-      callbackURL: "/auth/google/callback"
+      callbackURL: "/auth/google/callback",
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       // If found googleID with the same id in mongoDB,
