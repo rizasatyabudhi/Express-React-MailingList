@@ -28,21 +28,19 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       // If found googleID with the same id in mongoDB,
       // don't create a new instance, else create a new instance
-      User.findOne({ googleID: profile.id }).then(existingUser => {
-        if (existingUser) {
-          // 1st argument = error message
-          done(null, existingUser);
-        } else {
-          // make a new instance of users class everytime they go to google auth page
-          // .save() to store instance to mongo DB (not just in local)
-          new User({ googleID: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      const existingUser = await User.findOne({ googleID: profile.id });
+      if (existingUser) {
+        // 1st argument = error message
+        done(null, existingUser);
+      } else {
+        // make a new instance of users class everytime they go to google auth page
+        // .save() to store instance to mongo DB (not just in local)
+        const user = await new User({ googleID: profile.id }).save();
+        done(null, user);
+      }
     }
   )
 );

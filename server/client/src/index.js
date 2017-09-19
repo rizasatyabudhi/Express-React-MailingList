@@ -1,8 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// inde.js is responsible for Redux Setup (data setup)
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from "./components/App";
+import reducers from "./reducers/index";
+// 1st param = list of reducer
+// 2nd param = for SSR
+const store = createStore(reducers, {}, applyMiddleware());
+
+ReactDOM.render(
+  // Provider is to connect Redux with React
+  // So all of our child component can access the Redux Store
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
