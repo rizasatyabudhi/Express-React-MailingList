@@ -11,7 +11,7 @@ import reducers from "./reducers/index";
 // 1st param = list of reducer
 // 2nd param = for SSR
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-
+window.store = store;
 ReactDOM.render(
   // Provider is to connect Redux with React
   // So all of our child component can access the Redux Store
