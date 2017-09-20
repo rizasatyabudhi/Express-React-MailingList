@@ -11,12 +11,19 @@ module.exports = app => {
   );
 
   // Callback route after the user grant permission
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    // after the user is logged in, it will be redirected to /surveys
+    (req, res) => {
+      res.redirect("/surveys");
+    }
+  );
 
   app.get("/api/logout", (req, res) => {
     // takes the cookie and destroy the id inside it
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
   });
 
   app.get("/api/current_user", (req, res) => {
