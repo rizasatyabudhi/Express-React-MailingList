@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 // amount prop: price , in dollar cent, 500 cent == 5 dollar
 // token prop : callback function that will be called after the we receive authorization token from stripe API
@@ -12,7 +14,7 @@ class Payments extends Component {
           description="$5 for 5 Email Credits"
           amount={500}
           token={token => {
-            console.log(token);
+            this.props.handleToken(token);
           }}
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
         >
@@ -23,4 +25,4 @@ class Payments extends Component {
   }
 }
 
-export default Payments;
+export default connect(null, actions)(Payments);
