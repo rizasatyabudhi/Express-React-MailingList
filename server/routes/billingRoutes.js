@@ -21,5 +21,7 @@ module.exports = app => {
     // everytime user has already signed in, we can access the current user model with req.user
     req.user.credits += 5;
     const user = await req.user.save();
+
+    res.send(user);
   });
 };
