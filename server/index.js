@@ -8,6 +8,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 // We have to require models first before services, else throws error
 require("./models/User.js");
+require("./models/Survey");
 require("./services/passport.js");
 
 // required to connect mongoose with our mongoDB

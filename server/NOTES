@@ -11,3 +11,24 @@
 5. PRODUCTION CONFIG WITH EXPRES-REACT
 "heroku-postbuild":
       "NPM_CONFIG_PRODUCTION = false npm install --prefix client && npm run build --prefix client"
+
+6. "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:5000"
+    },
+    "/api/*": {
+      "target": "http://localhost:5000"
+    }
+  },
+
+we use this proxy setting , because our react server is on port 3000, so whenever it
+request to other port (5000), there will be :
+    1. Cookie issue,
+    2. CORS issue,
+thus we use proxy so that our browser think that we are directing to the same ":3000" port, where in reality
+we are making request to the port 5000 (api server)
+
+7. Step on creating new mongoose model:
+    1. create new model class in models directory
+    2. require it in the index.js, because it will not automatically called, we need to import it in other file
+    

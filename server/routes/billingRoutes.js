@@ -9,7 +9,6 @@ module.exports = app => {
   // 2nd param = middleware
   // 3nd param = response handler
   app.post("/api/stripe", requireLogin, async (req, res) => {
-    // when we post request from browser, their will be no response,
     const charge = await stripe.charges.create({
       amount: 500,
       currency: "usd",
