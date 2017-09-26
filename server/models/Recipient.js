@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const recipientSchema = new Schema({
   email: String,
   // has the user give respond or not (yes / no)
-  responded: Boolean
+  responded: { type: Boolean, default: false }
 });
 
 module.exports = recipientSchema;

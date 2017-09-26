@@ -32,3 +32,7 @@ we are making request to the port 5000 (api server)
     1. create new model class in models directory
     2. require it in the index.js, because it will not automatically called, we need to import it in other file
     
+8. Route Creation Step:
+ 1. Define an arrow function
+ 2. Export it
+ 3. Import it in index.js, and wire it to express "app" object

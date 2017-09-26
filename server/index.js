@@ -1,14 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
+// Routes Import
 const authRoutes = require("./routes/authRoutes.js");
 const billingRoutes = require("./routes/billingRoutes.js");
+const surveyRoutes = require("./routes/surveyRoutes.js");
+
 const keys = require("./config/keys.js");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-// We have to require models first before services, else throws error
+// We have to require models first before services, else it will error
 require("./models/User.js");
 require("./models/Survey");
+
 require("./services/passport.js");
 
 // required to connect mongoose with our mongoDB
@@ -48,8 +53,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// !--------- ROUTES WIRING ---------!
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
